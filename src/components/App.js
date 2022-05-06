@@ -4,11 +4,13 @@ import "./App.css";
 import BottonNumerico from "./BottonNumerico";
 import BottonOperacion from "./BottonOperacion";
 
+
 export const acciones_distintas = {
     AGREGAR_NUMERO : "agregar-digito",
     ESCOGER_OPERANDO : "escoger-operando",
     CLEAR : "clear",
-    EVALUAR : "evaluar"
+    EVALUAR : "evaluar",
+    SIGN : "signo"
 }
 
 function reducer(state, {type, payload}){
@@ -32,6 +34,19 @@ function reducer(state, {type, payload}){
                 numeroActual: `${state.numeroActual || ""}${payload.digito}`
             }
 
+        case acciones_distintas.SIGN:
+            ///revisar esta parte
+            if( state.numeroActual == null){
+                return{
+                    state
+                }
+            }
+            return {
+                ...state,
+                numeroActual:  state.numeroActual * -1
+
+            }
+            
         case acciones_distintas.CLEAR:
          
                 return {
@@ -107,6 +122,9 @@ function evaluar({numeroActual, numeroAntes, operacion}){
             break
         case "%":
             computo = antes % ahorita
+            break
+        case "+/-":
+            alert("Boton no implementado")
             break
 
         
@@ -249,6 +267,10 @@ function App(){
             <br></br>
             <br></br>
             <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            
 
 
 
